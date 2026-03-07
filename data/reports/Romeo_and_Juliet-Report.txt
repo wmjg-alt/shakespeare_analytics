@@ -1,0 +1,42 @@
+============================================================
+      NLP ANALYTICS: ROMEO AND JULIET (TOP 5)
+============================================================
+Total Valid Entities:      52
+Actual Speaking Roles:     34
+Mentioned-Only Characters: 18
+
+--- Most Words Spoken ---
+ 1. ROMEO                 4727 words
+ 2. JULIET                4297 words
+ 3. FRIAR LAURENCE        2734 words
+ 4. NURSE                 2211 words
+ 5. CAPULET               2137 words
+
+--- Most Turns Taken ---
+ 1. ROMEO                  163 turns
+ 2. JULIET                 118 turns
+ 3. NURSE                   90 turns
+ 4. BENVOLIO                64 turns
+ 5. MERCUTIO                62 turns
+
+--- Wordiest Characters (Avg Words/Turn) ---
+ 1. CHORUS               109.5 avg words
+ 2. FRIAR LAURENCE        49.7 avg words
+ 3. CAPULET               42.7 avg words
+ 4. PRINCE                36.6 avg words
+ 5. JULIET                36.4 avg words
+
+--- Top Gossip (Mentions others the most) ---
+ 1. JULIET                 69 mentions (Most: ROMEO - 41)
+ 2. ROMEO                  49 mentions (Most: JULIET - 18)
+ 3. NURSE                  49 mentions (Most: ROMEO - 17)
+ 4. FRIAR LAURENCE         44 mentions (Most: ROMEO - 19)
+ 5. BENVOLIO               36 mentions (Most: ROMEO - 14)
+
+--- Most Talked About (Mentioned by others the most) ---
+ 1. ROMEO                 118 mentions (Biggest Fan: JULIET - 41)
+ 2. TYBALT                 57 mentions (Biggest Fan: JULIET - 14)
+ 3. JULIET                 46 mentions (Biggest Fan: ROMEO - 18)
+ 4. MONTAGUE               22 mentions (Biggest Fan: JULIET - 5)
+ 5. MERCUTIO               18 mentions (Biggest Fan: ROMEO - 8)
+============================================================

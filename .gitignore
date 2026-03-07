@@ -1,0 +1,22 @@
+# Python caches and environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+conda_env/
+
+# Data artifacts (Ignore heavy raw/parsed files, keep stats & reports)
+data/raw/*
+!data/raw/.gitkeep
+
+data/processed/*.json
+
+# IDEs and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
