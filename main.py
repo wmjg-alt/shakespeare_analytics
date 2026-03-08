@@ -7,7 +7,6 @@ import logging
 import os
 import argparse
 
-# Updated Imports to use the new src package
 from src.models import Play
 from src.parser import PlayParser
 from src.analyzer import PlayAnalyzer
@@ -23,21 +22,32 @@ def ensure_dirs(filepath: str):
 
 def main():
     parser = argparse.ArgumentParser(description="Shakespeare Parser & Analytics Engine")
+    parser.add_argument("-p", "--play", type=str, default="Romeo_and_Juliet",
+                        help="Name of the play to process (e.g., Romeo_and_Juliet, Macbeth).")
     parser.add_argument("-r", "--rebuild", action="store_true", 
                         help="Force rebuild both the JSON parse and the NLP CSV from raw text.")
     parser.add_argument("-t", "--top", type=int, default=5,
                         help="Number of characters to display in the top N rankings (default: 5)")
     args = parser.parse_args()
 
-    # Define Data Architecture Paths
-    play_title    = "Romeo and Juliet"
-    raw_filepath  = os.path.join("data", "raw", "Romeo_and_Juliet-Shakespeare-raw.txt")
-    json_outpath  = os.path.join("data", "processed", "Romeo_and_Juliet-Parsed.json")
-    csv_outpath   = os.path.join("data", "processed", "Romeo_and_Juliet-Stats.csv")
-    report_outpath= os.path.join("data", "reports", "Romeo_and_Juliet-Report.txt")
+    # Dynamic Path Formatting
+    play_id       = args.play
+    play_title    = play_id.replace("_", " ") # Converts "Romeo_and_Juliet" to "Romeo and Juliet"
+    
+    raw_filepath  = os.path.join("data", "raw", f"{play_id}-Shakespeare-raw.txt")
+    json_outpath  = os.path.join("data", "processed", f"{play_id}-Parsed.json")
+    csv_outpath   = os.path.join("data", "processed", f"{play_id}-Stats.csv")
+    report_outpath= os.path.join("data", "reports", f"{play_id}-Report.txt")
 
-    # Ensure output directories exist based on our new data structure
-    for path in[json_outpath, csv_outpath, report_outpath]:
+    # Upfront Validation: Do we have what we need to run?
+    needs_parse = args.rebuild or not os.path.exists(json_outpath)
+    if needs_parse and not os.path.exists(raw_filepath):
+        logger.error(f"Missing Raw File: Expected to find '{raw_filepath}'.")
+        logger.error(f"Ensure your file follows the format: <Play_Name>-Shakespeare-raw.txt")
+        return
+
+    # Ensure output directories exist
+    for path in [json_outpath, csv_outpath, report_outpath]:
         ensure_dirs(path)
 
     parsed_play = None
@@ -45,15 +55,11 @@ def main():
     # ==========================================
     # PHASE 1: TEXT PARSING
     # ==========================================
-    if os.path.exists(json_outpath) and not args.rebuild:
+    if not needs_parse:
         logger.info(f"Found existing {json_outpath}. Loading structural schema...")
         with open(json_outpath, 'r', encoding='utf-8') as f:
             parsed_play = Play.from_dict(json.load(f))
     else:
-        if not os.path.exists(raw_filepath):
-            logger.error(f"Could not find '{raw_filepath}'. Ensure the text is in data/raw/")
-            return
-
         p_parser = PlayParser(title=play_title)
         parsed_play = p_parser.parse_file(raw_filepath)
         
@@ -74,7 +80,7 @@ def main():
         analyzer.analyze()         
         analyzer.export_csv(csv_outpath)
     
-    # Generate parameterized report (Prints to console AND overwrites .txt file)
+    # Generate parameterized report
     analyzer.generate_report(report_filepath=report_outpath, play_title=play_title, top_n=args.top) 
 
 if __name__ == "__main__":

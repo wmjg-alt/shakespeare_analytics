@@ -1,7 +1,3 @@
-"""
-parser.py
-State-machine based parser with deep heuristics for text extraction.
-"""
 import logging
 from src.models import Play, Act, Scene, Turn, StageDirection
 
@@ -23,14 +19,16 @@ def is_character_name(line: str) -> bool:
         return False
     return True
 
-def is_stage_direction(line: str, is_scene_start: bool) -> bool:
+def is_explicit_stage_direction(line: str) -> bool:
     text = line.strip()
-    if text.startswith("[") and text.endswith("]"):
+    if text.startswith("[") and text.endswith("]"): 
         return True
-    sd_keywords =["Enter", "Exit", "Exeunt", "Retires", "Dies", "Strikes", "Musicians"]
-    if any(text.startswith(kw) for kw in sd_keywords):
-        return True
-    return False
+        
+    sd_keywords =[
+        "Enter", "Exit", "Exeunt", "Retires", "Dies", "Strikes", 
+        "Musicians", "Thunder", "Alarum", "Drum", "Flourish", "Sennet"
+    ]
+    return any(text.startswith(kw) for kw in sd_keywords)
 
 
 class PlayParser:
@@ -43,6 +41,7 @@ class PlayParser:
         self.started = False
         self.lines_parsed = 0
         self.anomalies = 0
+        self.prelude_buffer = list()
 
     def parse_file(self, filepath: str) -> Play:
         logger.info(f"Beginning raw text parse of {filepath}...")
@@ -50,10 +49,10 @@ class PlayParser:
             for line_num, line in enumerate(f, 1):
                 self._parse_line(line, line_num)
                 
-        # Back Prop
+        self._flush_prelude_buffer()
         self.play.enrich_metadata()
-        
         self._validate_closure()
+        
         return self.play
 
     def _parse_line(self, line: str, line_num: int):
@@ -70,16 +69,41 @@ class PlayParser:
             return  
             
         if is_act_header(clean_line):
+            self._flush_prelude_buffer()
             self._handle_act(clean_line)
         elif is_scene_header(clean_line):
+            self._flush_prelude_buffer()
             self._handle_scene(clean_line)
         elif is_character_name(clean_line):
+            self._flush_prelude_buffer()
             self._handle_character(clean_line)
         elif is_indented(clean_line):
             self._handle_indented_content(clean_line, line_num)
         else:
             self.anomalies += 1
             logger.warning(f"Line {line_num} Anomaly: Unrecognized structure -> '{clean_line}'")
+
+    def _flush_prelude_buffer(self):
+        if not self.prelude_buffer:
+            return
+            
+        lines_only = [item[0] for item in self.prelude_buffer]
+        first_line_num = self.prelude_buffer[0][1]
+        
+        if len(lines_only) <= 4:
+            for line_text, _ in self.prelude_buffer:
+                if self.current_scene:
+                    self.current_scene.add_element(StageDirection(line_text))
+        else:
+            self.anomalies += 1
+            logger.warning(f"Line {first_line_num} Anomaly: Large block ({len(lines_only)} lines). Defaulting to CHORUS.")
+            chorus_turn = Turn("CHORUS")
+            for line_text, _ in self.prelude_buffer:
+                chorus_turn.add_line(line_text)
+            if self.current_scene:
+                self.current_scene.add_element(chorus_turn)
+            
+        self.prelude_buffer.clear()
 
     def _handle_act(self, line: str):
         self.current_turn = None
@@ -104,17 +128,14 @@ class PlayParser:
 
         is_scene_start = (self.current_turn is None)
         
-        if is_stage_direction(line, is_scene_start):
-            sd = StageDirection(line)
-            self.current_scene.add_element(sd)
+        if is_explicit_stage_direction(line):
+            self._flush_prelude_buffer()
+            self.current_scene.add_element(StageDirection(line))
         else:
-            if self.current_turn is None:
-                self.anomalies += 1
-                logger.warning(f"Line {line_num} Anomaly: Unassigned dialogue. Defaulting to 'CHORUS'.")
-                self.current_turn = Turn("CHORUS")
-                self.current_scene.add_element(self.current_turn)
-                
-            self.current_turn.add_line(line)
+            if is_scene_start:
+                self.prelude_buffer.append((line, line_num))
+            else:
+                self.current_turn.add_line(line)
 
     def _validate_closure(self):
         logger.info("=== Parsing Completed ===")

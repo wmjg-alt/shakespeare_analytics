@@ -1,0 +1,42 @@
+============================================================
+      NLP ANALYTICS: MACBETH (TOP 5)
+============================================================
+Total Valid Entities:      51
+Actual Speaking Roles:     42
+Mentioned-Only Characters: 9
+
+--- Most Words Spoken ---
+ 1. MACBETH               5345 words
+ 2. LADY MACBETH          1901 words
+ 3. MALCOLM               1505 words
+ 4. MACDUFF               1160 words
+ 5. ROSS                   905 words
+
+--- Most Turns Taken ---
+ 1. MACBETH                145 turns
+ 2. LADY MACBETH            59 turns
+ 3. MACDUFF                 59 turns
+ 4. MALCOLM                 40 turns
+ 5. ROSS                    39 turns
+
+--- Wordiest Characters (Avg Words/Turn) ---
+ 1. HECATE               143.0 avg words
+ 2. PORTER                79.5 avg words
+ 3. SERGEANT              78.0 avg words
+ 4. LORD                  52.0 avg words
+ 5. MALCOLM               37.6 avg words
+
+--- Top Gossip (Mentions others the most) ---
+ 1. MACBETH                52 mentions (Most: BANQUO - 13)
+ 2. LENNOX                 15 mentions (Most: MACBETH - 3)
+ 3. LADY MACBETH           14 mentions (Most: DUNCAN - 4)
+ 4. MACDUFF                13 mentions (Most: BANQUO - 4)
+ 5. DUNCAN                 12 mentions (Most: CAWDOR - 4)
+
+--- Most Talked About (Mentioned by others the most) ---
+ 1. MACBETH                37 mentions (Biggest Fan: THIRD WITCH - 4)
+ 2. BANQUO                 26 mentions (Biggest Fan: MACBETH - 13)
+ 3. DUNCAN                 15 mentions (Biggest Fan: MACBETH - 6)
+ 4. MACDUFF                15 mentions (Biggest Fan: MACBETH - 4)
+ 5. CAWDOR                 13 mentions (Biggest Fan: MACBETH - 5)
+============================================================
