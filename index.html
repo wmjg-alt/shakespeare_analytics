@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shakespeare Analytics Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 0.75rem; }
+    </style>
+</head>
+<body class="min-h-screen p-6 font-sans antialiased">
+
+    <!-- Top Navigation Bar -->
+    <header class="flex justify-between items-center mb-8 glass-panel p-4 shadow-lg">
+        <h1 class="text-2xl font-bold tracking-wider text-indigo-400">Shakespeare Analytics</h1>
+        <div class="flex items-center space-x-4">
+            <label for="playSelect" class="text-sm text-slate-400 font-semibold uppercase">Select Play:</label>
+            <select id="playSelect" class="bg-slate-800 border border-slate-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-48 p-2.5 outline-none">
+                <option value="Romeo_and_Juliet" selected>Romeo and Juliet</option>
+                <option value="Macbeth">Macbeth</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Row 1: KPI Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="glass-panel p-6 shadow-md text-center">
+            <h3 class="text-slate-400 text-sm font-bold uppercase mb-1">Total Entities</h3>
+            <p id="kpi-entities" class="text-3xl font-bold text-white">-</p>
+        </div>
+        <div class="glass-panel p-6 shadow-md text-center">
+            <h3 class="text-slate-400 text-sm font-bold uppercase mb-1">Speaking Roles</h3>
+            <p id="kpi-speakers" class="text-3xl font-bold text-indigo-400">-</p>
+        </div>
+        <div class="glass-panel p-6 shadow-md text-center">
+            <h3 class="text-slate-400 text-sm font-bold uppercase mb-1">Blabbermouth</h3>
+            <p id="kpi-wordiest" class="text-xl font-bold text-white mt-2">-</p>
+        </div>
+        <div class="glass-panel p-6 shadow-md text-center">
+            <h3 class="text-slate-400 text-sm font-bold uppercase mb-1">Top Gossip</h3>
+            <p id="kpi-gossip" class="text-xl font-bold text-indigo-400 mt-2">-</p>
+        </div>
+    </div>
+
+    <!-- Row 2: Three Bar Charts -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div class="glass-panel p-4 shadow-lg h-96 flex flex-col">
+            <h2 class="text-center text-sm font-bold uppercase text-slate-400 mb-2">Most Words Spoken</h2>
+            <div id="wordsChart" class="flex-grow w-full"></div>
+        </div>
+        <div class="glass-panel p-4 shadow-lg h-96 flex flex-col">
+            <h2 class="text-center text-sm font-bold uppercase text-slate-400 mb-2">Most Turns Taken</h2>
+            <div id="turnsChart" class="flex-grow w-full"></div>
+        </div>
+        <div class="glass-panel p-4 shadow-lg h-96 flex flex-col">
+            <h2 class="text-center text-sm font-bold uppercase text-slate-400 mb-2">Wordiness (Avg Words/Turn)</h2>
+            <div id="wordinessChart" class="flex-grow w-full"></div>
+        </div>
+    </div>
+
+    <!-- Row 3: The Massive Network Graph -->
+    <div class="glass-panel p-4 shadow-lg w-full h-[85vh] flex flex-col">
+        <h2 class="text-center text-sm font-bold uppercase text-slate-400 mb-2">Character Interaction Web</h2>
+        <p class="text-center text-xs text-slate-500 mb-4">Zoom and drag to explore. Node size = Words Spoken. Line thickness = Frequency of mentions.</p>
+        <div id="networkChart" class="flex-grow w-full"></div>
+    </div>
+
+    <!-- Logic -->
+    <script>
+        // ==========================================
+        // 🛠️ NETWORK GRAPH CONFIGURATION
+        // Tweak these values, save, and refresh to tune the web!
+        // ==========================================
+        const GRAPH_CONFIG = {
+            repulsionForce: 300,         // How strongly nodes push away from each other (higher = wider spread)
+            edgeLength: [50, 200],       // Min and Max distance between connected nodes
+            gravity: 0.2,                // How strongly nodes are pulled to the center
+            friction: 0.6,               // How quickly nodes slow down after moving
+            
+            nodeMinSize: 9,             // Smallest allowed circle
+            nodeSizeMultiplier: 1.5,     // Multiplier for node growth based on word count
+            
+            edgeBaseWidth: 0.5,            // Thinnest allowed connecting line
+            edgeWidthMultiplier: 0.6,    // How fast lines get thicker with more mentions
+            edgeCurveness: 0.4,          // How bent the connecting lines are (0 = straight, 1 = circular)
+            
+            labelFontSize: 11,           // Size of the character names next to nodes
+            speakerColor: '#818cf8',     // Color for characters who actually speak
+            mentionedColor: '#475560'    // Color for characters who are only talked about (e.g. Rosaline)
+        };
+        // ==========================================
+
+        // Initialize ECharts instances
+        const wordsChart = echarts.init(document.getElementById('wordsChart'), 'dark');
+        const turnsChart = echarts.init(document.getElementById('turnsChart'), 'dark');
+        const wordinessChart = echarts.init(document.getElementById('wordinessChart'), 'dark');
+        const networkChart = echarts.init(document.getElementById('networkChart'), 'dark');
+
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            wordsChart.resize();
+            turnsChart.resize();
+            wordinessChart.resize();
+            networkChart.resize();
+        });
+
+        // Main Data Loader
+        function loadPlayData(playName) {
+            const csvPath = `data/processed/${playName}-Stats.csv`;
+            
+            Papa.parse(csvPath, {
+                download: true,
+                header: true,
+                dynamicTyping: true,
+                complete: function(results) {
+                    const data = results.data.filter(row => row.Name); 
+                    updateDashboard(data);
+                },
+                error: function(err) {
+                    console.error("Error loading CSV:", err);
+                    alert("Could not load data. Ensure the local server is running and the play CSV exists.");
+                }
+            });
+        }
+
+        // Shared Bar Chart Config Generator
+        function getBarOption(names, values, color) {
+            return {
+                backgroundColor: 'transparent',
+                tooltip: { trigger: 'axis' },
+                grid: { left: '3%', right: '5%', bottom: '2%', top: '2%', containLabel: true },
+                xAxis: { type: 'value', splitLine: { show: false }, axisLabel: { show: false } },
+                yAxis: { type: 'category', data: names, axisLabel: { color: '#cbd5e1', fontSize: 10 } },
+                series:[{
+                    type: 'bar',
+                    data: values,
+                    label: { show: true, position: 'right', color: '#f8fafc', fontSize: 10 },
+                    itemStyle: { color: color, borderRadius: [0, 4, 4, 0] }
+                }]
+            };
+        }
+
+        // Dashboard Updater
+        function updateDashboard(data) {
+            const speakers = data.filter(d => d.Is_Speaker === "True");
+            
+            // --- 1. Update KPIs ---
+            document.getElementById('kpi-entities').innerText = data.length;
+            document.getElementById('kpi-speakers').innerText = speakers.length;
+            
+            const wordiest = [...speakers].sort((a, b) => b.Total_Words - a.Total_Words)[0];
+            document.getElementById('kpi-wordiest').innerText = wordiest ? wordiest.Name : "N/A";
+
+            let topGossip = null;
+            let maxOut = 0;
+            data.forEach(char => {
+                if(char.Mentions_Out_Dict) {
+                    const outDict = JSON.parse(char.Mentions_Out_Dict);
+                    const totalMentions = Object.values(outDict).reduce((a, b) => a + b, 0);
+                    if(totalMentions > maxOut) { maxOut = totalMentions; topGossip = char.Name; }
+                }
+            });
+            document.getElementById('kpi-gossip').innerText = topGossip || "N/A";
+
+            // --- 2. Build 3 Bar Charts (Top 10s) ---
+            const topWords = [...speakers].sort((a, b) => b.Total_Words - a.Total_Words).slice(0, 10).reverse();
+            wordsChart.setOption(getBarOption(topWords.map(d => d.Name), topWords.map(d => d.Total_Words), '#818cf8'));
+
+            const topTurns =[...speakers].sort((a, b) => b.Total_Turns - a.Total_Turns).slice(0, 10).reverse();
+            turnsChart.setOption(getBarOption(topTurns.map(d => d.Name), topTurns.map(d => d.Total_Turns), '#34d399'));
+
+            const topWordiness = [...speakers].filter(d => d.Total_Turns >= 2).sort((a, b) => b.Avg_Words_Per_Turn - a.Avg_Words_Per_Turn).slice(0, 10).reverse();
+            wordinessChart.setOption(getBarOption(topWordiness.map(d => d.Name), topWordiness.map(d => d.Avg_Words_Per_Turn), '#fbbf24'));
+
+            // --- 3. Build Network Graph using GRAPH_CONFIG ---
+            const nodes = [];
+            const links =[];
+
+            data.forEach(char => {
+                const nodeSize = Math.max(GRAPH_CONFIG.nodeMinSize, Math.sqrt(char.Total_Words || 10) * GRAPH_CONFIG.nodeSizeMultiplier);
+                nodes.push({
+                    id: char.Name,
+                    name: char.Name,
+                    symbolSize: nodeSize,
+                    itemStyle: { color: char.Is_Speaker === "True" ? GRAPH_CONFIG.speakerColor : GRAPH_CONFIG.mentionedColor },
+                    value: char.Total_Words,
+                });
+
+                if(char.Mentions_Out_Dict) {
+                    const outDict = JSON.parse(char.Mentions_Out_Dict);
+                    for (const [target, weight] of Object.entries(outDict)) {
+                        links.push({
+                            source: char.Name,
+                            target: target,
+                            value: weight,
+                            lineStyle: { 
+                                width: Math.max(GRAPH_CONFIG.edgeBaseWidth, weight * GRAPH_CONFIG.edgeWidthMultiplier), 
+                                opacity: 0.6 
+                            }
+                        });
+                    }
+                }
+            });
+
+            networkChart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: { formatter: '{b}' },
+                series:[{
+                    type: 'graph',
+                    layout: 'force',
+                    roam: true, // Enables zoom and drag
+                    label: { show: true, position: 'right', color: '#f8fafc', fontSize: GRAPH_CONFIG.labelFontSize, position: "inside" },
+                    force: { 
+                        repulsion: GRAPH_CONFIG.repulsionForce, 
+                        edgeLength: GRAPH_CONFIG.edgeLength,
+                        gravity: GRAPH_CONFIG.gravity,
+                        friction: GRAPH_CONFIG.friction
+                    },
+                    data: nodes,
+                    links: links,
+                    lineStyle: { color: 'source', curveness: GRAPH_CONFIG.edgeCurveness }
+                }]
+            });
+        }
+
+        // Dropdown Event Listener
+        document.getElementById('playSelect').addEventListener('change', function(e) {
+            loadPlayData(e.target.value);
+        });
+
+        // Initial Load
+        loadPlayData('Romeo_and_Juliet');
+    </script>
+</body>
+</html>

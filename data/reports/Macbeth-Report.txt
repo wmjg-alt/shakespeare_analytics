@@ -27,16 +27,16 @@ Mentioned-Only Characters: 9
  5. MALCOLM               37.6 avg words
 
 --- Top Gossip (Mentions others the most) ---
- 1. MACBETH                52 mentions (Most: BANQUO - 13)
- 2. LENNOX                 15 mentions (Most: MACBETH - 3)
- 3. LADY MACBETH           14 mentions (Most: DUNCAN - 4)
- 4. MACDUFF                13 mentions (Most: BANQUO - 4)
- 5. DUNCAN                 12 mentions (Most: CAWDOR - 4)
+ 1. MACBETH                71 mentions (Most: BANQUO - 17)
+ 2. LENNOX                 23 mentions (Most: LORD - 5)
+ 3. LADY MACBETH           22 mentions (Most: LORD - 7)
+ 4. MALCOLM                16 mentions (Most: MACBETH - 5)
+ 5. MACDUFF                16 mentions (Most: BANQUO - 4)
 
 --- Most Talked About (Mentioned by others the most) ---
- 1. MACBETH                37 mentions (Biggest Fan: THIRD WITCH - 4)
- 2. BANQUO                 26 mentions (Biggest Fan: MACBETH - 13)
- 3. DUNCAN                 15 mentions (Biggest Fan: MACBETH - 6)
- 4. MACDUFF                15 mentions (Biggest Fan: MACBETH - 4)
- 5. CAWDOR                 13 mentions (Biggest Fan: MACBETH - 5)
+ 1. MACBETH                40 mentions (Biggest Fan: MALCOLM - 5)
+ 2. LORD                   35 mentions (Biggest Fan: LADY MACBETH - 7)
+ 3. BANQUO                 34 mentions (Biggest Fan: MACBETH - 17)
+ 4. DUNCAN                 16 mentions (Biggest Fan: MACBETH - 7)
+ 5. MACDUFF                16 mentions (Biggest Fan: LENNOX - 4)
 ============================================================

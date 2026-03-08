@@ -1,9 +1,9 @@
 ============================================================
       NLP ANALYTICS: ROMEO AND JULIET (TOP 5)
 ============================================================
-Total Valid Entities:      52
+Total Valid Entities:      43
 Actual Speaking Roles:     34
-Mentioned-Only Characters: 18
+Mentioned-Only Characters: 9
 
 --- Most Words Spoken ---
  1. ROMEO                 4727 words
@@ -27,16 +27,16 @@ Mentioned-Only Characters: 18
  5. JULIET                36.4 avg words
 
 --- Top Gossip (Mentions others the most) ---
- 1. JULIET                 69 mentions (Most: ROMEO - 41)
- 2. ROMEO                  49 mentions (Most: JULIET - 18)
- 3. NURSE                  49 mentions (Most: ROMEO - 17)
- 4. FRIAR LAURENCE         44 mentions (Most: ROMEO - 19)
- 5. BENVOLIO               36 mentions (Most: ROMEO - 14)
+ 1. JULIET                 93 mentions (Most: ROMEO - 43)
+ 2. ROMEO                  69 mentions (Most: JULIET - 20)
+ 3. FRIAR LAURENCE         53 mentions (Most: ROMEO - 19)
+ 4. NURSE                  45 mentions (Most: ROMEO - 17)
+ 5. BENVOLIO               40 mentions (Most: ROMEO - 16)
 
 --- Most Talked About (Mentioned by others the most) ---
- 1. ROMEO                 118 mentions (Biggest Fan: JULIET - 41)
- 2. TYBALT                 57 mentions (Biggest Fan: JULIET - 14)
- 3. JULIET                 46 mentions (Biggest Fan: ROMEO - 18)
- 4. MONTAGUE               22 mentions (Biggest Fan: JULIET - 5)
- 5. MERCUTIO               18 mentions (Biggest Fan: ROMEO - 8)
+ 1. ROMEO                 123 mentions (Biggest Fan: JULIET - 43)
+ 2. TYBALT                 58 mentions (Biggest Fan: JULIET - 14)
+ 3. JULIET                 48 mentions (Biggest Fan: ROMEO - 20)
+ 4. NURSE                  37 mentions (Biggest Fan: JULIET - 20)
+ 5. PARIS                  28 mentions (Biggest Fan: FRIAR LAURENCE - 7)
 ============================================================

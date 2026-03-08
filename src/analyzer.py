@@ -1,22 +1,25 @@
 """
 analyzer.py
 Engine for NER extraction, statistical calculations, and Dual-Reporting.
+Includes programmatic Entity Aliasing, Plural filtering, and Gimmick constraints.
 """
 import csv
 import json
 import logging
 import spacy
 from typing import Dict
+
 from src.models import Play, Turn, Character
 
 logger = logging.getLogger(__name__)
 
 class PlayAnalyzer:
-    def __init__(self, play: Play = None):
-        # Play can be None if we are strictly loading from CSV and don't need the text
+    def __init__(self, play: Play = None, gimmick_chars: list = None):
         self.play = play
         self.characters: Dict[str, Character] = {}
-        self.nlp = None  # Lazy-load only if we actually need it
+        self.nlp = None
+        # Normalize gimmicks to uppercase set for fast checking
+        self.gimmick_chars = set([g.upper() for g in (gimmick_chars or [])])
 
     def _init_spacy(self):
         """Lazy loader for SpaCy to save memory/time if we are just loading a CSV."""
@@ -27,6 +30,32 @@ class PlayAnalyzer:
             except OSError:
                 logger.error("Spacy model missing! Run: python -m spacy download en_core_web_trf")
                 raise
+
+            ruler = self.nlp.add_pipe("entity_ruler", before="ner")
+            patterns =[]
+
+            if self.play:
+                speaker_names = set()
+                for act in self.play.acts:
+                    for scene in act.scenes:
+                        for element in scene.elements:
+                            if isinstance(element, Turn):
+                                speaker_names.add(element.speaker)
+                
+                for name in speaker_names:
+                    pattern_nodes =[{"LOWER": word.lower()} for word in name.split()]
+                    patterns.append({"label": "PERSON", "pattern": pattern_nodes})
+
+            patterns.append({
+                "label": "PERSON",
+                "pattern":[
+                    {"LOWER": {"IN":["thane", "prince", "king", "queen", "duke", "earl", "lord", "lady"]}},
+                    {"LOWER": "of"},
+                    {"IS_TITLE": True}
+                ]
+            })
+
+            ruler.add_patterns(patterns)
 
     def _get_character(self, name: str) -> Character:
         name = name.upper()
@@ -55,7 +84,8 @@ class PlayAnalyzer:
                         for ent in doc.ents:
                             if ent.label_ == "PERSON":
                                 mentioned_name = ent.text.strip().upper()
-                                if mentioned_name != speaker.name:
+                                # Ignore self-mentions AND incoming mentions to gimmick characters
+                                if mentioned_name != speaker.name and mentioned_name not in self.gimmick_chars:
                                     speaker.mentions_out[mentioned_name] += 1
                                     mentioned_char = self._get_character(mentioned_name)
                                     mentioned_char.mentions_in[speaker.name] += 1
@@ -69,11 +99,26 @@ class PlayAnalyzer:
     def _filter_hallucinations(self):
         """Cleans up the character registry based on strict heuristics."""
         bad_names = {"HO", "ERE", "AY", "NAY", "DOST", "HATH", "DOTH", "DIAN", 
-                     "LIES", "WHERETO", "O", "AH", "ALAS", "VERONA", "MANTUA", "PADUA"}
+                     "LIES", "WHERETO", "O", "AH", "ALAS", "MARRY",
+                     "SIRRAH", "ANON", "HIE", "FIE", "ALACK", "TUT", "HAIL", "ALL"}
         
         valid_chars = {}
+        speakers_set = {name for name, char in self.characters.items() if char.is_speaker}
+
         for name, char in self.characters.items():
-            if name in bad_names: continue
+            if name in bad_names and not char.is_speaker:
+                continue
+                
+            is_plural_of_speaker = False
+            if not char.is_speaker:
+                if name.endswith("S") and name[:-1] in speakers_set:
+                    is_plural_of_speaker = True
+                elif name.endswith("ES") and name[:-2] in speakers_set:
+                    is_plural_of_speaker = True
+                    
+            if is_plural_of_speaker:
+                continue
+                
             if char.is_speaker or len(char.mentions_in) >= 2:
                 valid_chars[name] = char
                 
@@ -100,13 +145,9 @@ class PlayAnalyzer:
             
             for char in sorted(self.characters.values(), key=lambda x: x.stats["total_words"], reverse=True):
                 writer.writerow([
-                    char.name, 
-                    char.is_speaker, 
-                    char.stats["total_turns"], 
-                    char.stats["total_words"],
+                    char.name, char.is_speaker, char.stats["total_turns"], char.stats["total_words"],
                     round(char.stats["avg_words_per_turn"], 2),
-                    json.dumps(char.mentions_out), 
-                    json.dumps(char.mentions_in)
+                    json.dumps(char.mentions_out), json.dumps(char.mentions_in)
                 ])
         logger.info(f"Successfully exported full character statistics to {filepath}")
 

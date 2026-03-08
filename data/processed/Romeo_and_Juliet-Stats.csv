@@ -1,30 +1,30 @@
 Name,Is_Speaker,Total_Turns,Total_Words,Avg_Words_Per_Turn,Mentions_Out_Dict,Mentions_In_Dict
-ROMEO,True,163,4727,29.0,"{""TUT"": 1, ""CUPID"": 1, ""MERCUTIO"": 8, ""CAPULET"": 3, ""ROSALINE"": 3, ""TYBALT"": 10, ""JULIET"": 18, ""LAURENCE"": 1, ""BENVOLIO"": 2, ""BALTHASAR"": 1, ""PARIS"": 1}","{""LADY MONTAGUE"": 1, ""BENVOLIO"": 14, ""MERCUTIO"": 8, ""CAPULET"": 2, ""TYBALT"": 2, ""NURSE"": 17, ""CHORUS"": 1, ""JULIET"": 41, ""FRIAR LAURENCE"": 19, ""LADY CAPULET"": 4, ""PRINCE"": 4, ""MONTAGUE"": 1, ""BALTHASAR"": 1, ""SECOND WATCHMAN"": 1, ""FIRST WATCHMAN"": 2}"
-JULIET,True,118,4297,36.42,"{""ROMEO"": 41, ""CAPULET"": 1, ""MONTAGUE"": 5, ""GOD"": 3, ""TYBALT"": 14, ""HIE"": 1, ""PETER"": 1, ""LAURENCE"": 3}","{""NURSE"": 4, ""LADY CAPULET"": 4, ""ROMEO"": 18, ""CHORUS"": 1, ""FRIAR LAURENCE"": 7, ""CAPULET"": 4, ""PARIS"": 2, ""FIRST WATCHMAN"": 2, ""BALTHASAR"": 1, ""PRINCE"": 2, ""MONTAGUE"": 1}"
-FRIAR LAURENCE,True,55,2734,49.71,"{""ROMEO"": 19, ""ROSALINE"": 4, ""TYBALT"": 5, ""FIE"": 1, ""JULIET"": 7, ""PARIS"": 2, ""CAPULETS"": 1, ""JOHN"": 3, ""CAPEL"": 1, ""ALACK"": 1}","{""FIRST WATCHMAN"": 1}"
-NURSE,True,90,2211,24.57,"{""GOD"": 5, ""JULIET"": 4, ""MARRY"": 4, ""ROMEO"": 17, ""MONTAGUE"": 1, ""ANON"": 1, ""PETER"": 5, ""FIE"": 1, ""JESU"": 1, ""LAURENCE"": 2, ""ALACK"": 1, ""TYBALT"": 6, ""HIE"": 1}",{}
-CAPULET,True,50,2137,42.74,"{""MONTAGUE"": 3, ""ROMEO"": 2, ""TYBALT"": 2, ""PARIS"": 3, ""JULIET"": 4, ""SIRRAH"": 2, ""PETER"": 1}","{""PRINCE"": 3, ""ROMEO"": 3, ""SERVANT"": 1, ""BENVOLIO"": 2, ""JULIET"": 1, ""PARIS"": 1}"
-MERCUTIO,True,62,2099,33.85,"{""ROMEO"": 8, ""CUPID"": 1, ""VENUS"": 1, ""ROSALINE"": 2, ""TYBALT"": 2, ""JESU"": 1, ""BENVOLIO"": 2, ""PETER"": 1, ""JACK"": 1}","{""ROMEO"": 8, ""BENVOLIO"": 6, ""TYBALT"": 1, ""FIRST CITIZEN"": 1, ""PRINCE"": 1, ""MONTAGUE"": 1}"
-BENVOLIO,True,64,1157,18.08,"{""TYBALT"": 12, ""ROMEO"": 14, ""CAPULET"": 2, ""ROSALINE"": 1, ""TUT"": 1, ""MERCUTIO"": 6}","{""TYBALT"": 1, ""MERCUTIO"": 2, ""ROMEO"": 2, ""PRINCE"": 1}"
-LADY CAPULET,True,45,872,19.38,"{""JULIET"": 4, ""PARIS"": 1, ""TYBALT"": 3, ""MONTAGUE"": 2, ""ROMEO"": 4, ""FIE"": 2}",{}
-PRINCE,True,16,585,36.56,"{""CAPULET"": 3, ""MONTAGUE"": 4, ""BENVOLIO"": 1, ""ROMEO"": 4, ""MERCUTIO"": 1, ""SIRRAH"": 1, ""JULIET"": 2}",{}
-PARIS,True,23,545,23.7,"{""CAPULET"": 1, ""TYBALT"": 1, ""VENUS"": 1, ""JULIET"": 2, ""MONTAGUE"": 2}","{""LADY CAPULET"": 1, ""CAPULET"": 3, ""FRIAR LAURENCE"": 2, ""ROMEO"": 1}"
-MONTAGUE,True,10,316,31.6,"{""ROMEO"": 1, ""MERCUTIO"": 1, ""TYBALT"": 1, ""JULIET"": 1}","{""SAMPSON"": 3, ""CAPULET"": 3, ""PRINCE"": 4, ""TYBALT"": 2, ""NURSE"": 1, ""JULIET"": 5, ""LADY CAPULET"": 2, ""PARIS"": 2}"
-TYBALT,True,17,265,15.59,"{""BENVOLIO"": 1, ""MONTAGUES"": 1, ""MONTAGUE"": 2, ""ROMEO"": 2, ""MERCUTIO"": 1}","{""BENVOLIO"": 12, ""ROMEO"": 10, ""MERCUTIO"": 2, ""FIRST CITIZEN"": 1, ""LADY CAPULET"": 3, ""MONTAGUE"": 1, ""NURSE"": 6, ""JULIET"": 14, ""FRIAR LAURENCE"": 5, ""CAPULET"": 2, ""PARIS"": 1}"
+ROMEO,True,163,4727,29.0,"{""CUPID"": 1, ""MERCUTIO"": 10, ""CAPULET"": 3, ""ROSALINE"": 3, ""TYBALT"": 11, ""JULIET"": 20, ""NURSE"": 7, ""FRIAR LAURENCE"": 1, ""BENVOLIO"": 2, ""PRINCE"": 5, ""BALTHASAR"": 1, ""APOTHECARY"": 2, ""PARIS"": 3}","{""LADY MONTAGUE"": 1, ""BENVOLIO"": 16, ""MERCUTIO"": 9, ""CAPULET"": 2, ""TYBALT"": 2, ""NURSE"": 17, ""CHORUS"": 1, ""JULIET"": 43, ""FRIAR LAURENCE"": 19, ""LADY CAPULET"": 4, ""PRINCE"": 4, ""MONTAGUE"": 1, ""BALTHASAR"": 1, ""SECOND WATCHMAN"": 1, ""FIRST WATCHMAN"": 2}"
+JULIET,True,118,4297,36.42,"{""NURSE"": 20, ""ROMEO"": 43, ""CAPULET"": 1, ""MONTAGUE"": 5, ""GOD"": 3, ""TYBALT"": 14, ""PETER"": 2, ""PARIS"": 2, ""LAURENCE"": 3}","{""NURSE"": 4, ""LADY CAPULET"": 4, ""ROMEO"": 20, ""CHORUS"": 1, ""FRIAR LAURENCE"": 7, ""CAPULET"": 4, ""PARIS"": 2, ""FIRST WATCHMAN"": 2, ""BALTHASAR"": 1, ""PRINCE"": 2, ""MONTAGUE"": 1}"
+FRIAR LAURENCE,True,55,2734,49.71,"{""ROMEO"": 19, ""ROSALINE"": 4, ""PRINCE"": 3, ""TYBALT"": 5, ""JULIET"": 7, ""NURSE"": 3, ""PARIS"": 7, ""FRIAR JOHN"": 3, ""MANTUA"": 1, ""CAPEL"": 1}","{""ROMEO"": 1, ""NURSE"": 1, ""CAPULET"": 1, ""FIRST WATCHMAN"": 1}"
+NURSE,True,90,2211,24.57,"{""GOD"": 5, ""JULIET"": 4, ""ROMEO"": 17, ""MONTAGUE"": 1, ""PETER"": 5, ""PARIS"": 4, ""JESU"": 1, ""FRIAR LAURENCE"": 1, ""TYBALT"": 6, ""LAURENCE"": 1}","{""LADY CAPULET"": 2, ""JULIET"": 20, ""SERVANT"": 1, ""ROMEO"": 7, ""FRIAR LAURENCE"": 3, ""CAPULET"": 4}"
+CAPULET,True,50,2137,42.74,"{""MONTAGUE"": 3, ""PARIS"": 6, ""SERVANT"": 1, ""ROMEO"": 2, ""TYBALT"": 2, ""JULIET"": 4, ""PETER"": 2, ""FRIAR LAURENCE"": 1, ""NURSE"": 4}","{""PRINCE"": 3, ""ROMEO"": 3, ""SERVANT"": 1, ""BENVOLIO"": 2, ""JULIET"": 1, ""PARIS"": 1}"
+MERCUTIO,True,62,2089,33.69,"{""ROMEO"": 9, ""CUPID"": 1, ""VENUS"": 1, ""ROSALINE"": 2, ""TYBALT"": 2, ""PRINCE"": 1, ""JESU"": 1, ""BENVOLIO"": 2, ""PETER"": 1, ""JACK"": 1, ""PAGE"": 1}","{""ROMEO"": 10, ""BENVOLIO"": 6, ""TYBALT"": 1, ""FIRST CITIZEN"": 1, ""PRINCE"": 1, ""MONTAGUE"": 1}"
+BENVOLIO,True,64,1157,18.08,"{""TYBALT"": 12, ""PRINCE"": 3, ""ROMEO"": 16, ""CAPULET"": 2, ""ROSALINE"": 1, ""MERCUTIO"": 6}","{""TYBALT"": 1, ""MERCUTIO"": 2, ""ROMEO"": 2, ""PRINCE"": 1}"
+LADY CAPULET,True,45,872,19.38,"{""NURSE"": 2, ""JULIET"": 4, ""PARIS"": 5, ""TYBALT"": 3, ""PRINCE"": 3, ""MONTAGUE"": 2, ""ROMEO"": 4, ""PETER"": 1}",{}
+PRINCE,True,16,585,36.56,"{""CAPULET"": 3, ""MONTAGUE"": 4, ""BENVOLIO"": 1, ""ROMEO"": 4, ""MERCUTIO"": 1, ""PAGE"": 1, ""JULIET"": 2}","{""BENVOLIO"": 3, ""MERCUTIO"": 1, ""ROMEO"": 5, ""LADY CAPULET"": 3, ""MONTAGUE"": 1, ""FRIAR LAURENCE"": 3, ""FIRST WATCHMAN"": 2}"
+PARIS,True,23,545,23.7,"{""CAPULET"": 1, ""TYBALT"": 1, ""VENUS"": 1, ""JULIET"": 2, ""PAGE"": 1, ""MONTAGUE"": 2}","{""CAPULET"": 6, ""LADY CAPULET"": 5, ""NURSE"": 4, ""JULIET"": 2, ""FRIAR LAURENCE"": 7, ""ROMEO"": 3, ""FIRST WATCHMAN"": 1}"
+MONTAGUE,True,10,316,31.6,"{""ROMEO"": 1, ""PRINCE"": 1, ""MERCUTIO"": 1, ""TYBALT"": 1, ""JULIET"": 1}","{""SAMPSON"": 3, ""CAPULET"": 3, ""PRINCE"": 4, ""TYBALT"": 2, ""NURSE"": 1, ""JULIET"": 5, ""LADY CAPULET"": 2, ""PARIS"": 2}"
+TYBALT,True,17,265,15.59,"{""BENVOLIO"": 1, ""MONTAGUE"": 2, ""ROMEO"": 2, ""MERCUTIO"": 1}","{""BENVOLIO"": 12, ""ROMEO"": 11, ""MERCUTIO"": 2, ""FIRST CITIZEN"": 1, ""LADY CAPULET"": 3, ""MONTAGUE"": 1, ""NURSE"": 6, ""JULIET"": 14, ""FRIAR LAURENCE"": 5, ""CAPULET"": 2, ""PARIS"": 1}"
 SAMPSON,True,20,261,13.05,"{""GREGORY"": 3, ""MONTAGUE"": 3}",{}
-PETER,True,13,239,18.38,"{""ANON"": 2}","{""NURSE"": 5, ""MERCUTIO"": 1, ""JULIET"": 1, ""CAPULET"": 1, ""SECOND SERVANT"": 1}"
+PETER,True,13,239,18.38,{},"{""NURSE"": 5, ""MERCUTIO"": 1, ""LADY CAPULET"": 1, ""JULIET"": 2, ""CAPULET"": 2, ""SECOND SERVANT"": 1}"
 BALTHASAR,True,12,232,19.33,"{""CAPEL"": 1, ""ROMEO"": 1, ""JULIET"": 1}","{""ROMEO"": 1, ""FIRST WATCHMAN"": 1}"
 CHORUS,True,2,219,109.5,"{""JULIET"": 1, ""ROMEO"": 1}",{}
-SERVANT,True,10,183,18.3,"{""CAPULET"": 1, ""MONTAGUES"": 1}",{}
-GREGORY,True,15,149,9.93,"{""JOHN"": 1, ""MONTAGUES"": 1}","{""SAMPSON"": 3}"
-FIRST WATCHMAN,True,6,149,24.83,"{""JULIET"": 2, ""CAPULETS"": 1, ""MONTAGUES"": 1, ""BALTHASAR"": 1, ""FRIAR LAURENCE"": 1, ""ROMEO"": 2}",{}
-SECOND SERVANT,True,6,96,16.0,"{""MARRY"": 1, ""PETER"": 1}",{}
-FRIAR JOHN,True,4,96,24.0,{},{}
-PAGE,True,4,81,20.25,"{""ANON"": 1}",{}
+SERVANT,True,10,183,18.3,"{""CAPULET"": 1, ""NURSE"": 1}","{""CAPULET"": 1}"
+GREGORY,True,15,149,9.93,{},"{""SAMPSON"": 3}"
+FIRST WATCHMAN,True,6,149,24.83,"{""JULIET"": 2, ""PRINCE"": 2, ""BALTHASAR"": 1, ""FRIAR LAURENCE"": 1, ""PARIS"": 1, ""ROMEO"": 2}",{}
+SECOND SERVANT,True,6,96,16.0,"{""PETER"": 1}",{}
+FRIAR JOHN,True,4,96,24.0,{},"{""FRIAR LAURENCE"": 3}"
+PAGE,True,4,81,20.25,{},"{""MERCUTIO"": 1, ""PARIS"": 1, ""PRINCE"": 1}"
 FIRST SERVANT,True,4,79,19.75,{},{}
 FIRST MUSICIAN,True,9,62,6.89,{},{}
-APOTHECARY,True,4,53,13.25,{},{}
-FIRST CITIZEN,True,3,43,14.33,"{""CAPULETS"": 1, ""MONTAGUES"": 1, ""MERCUTIO"": 1, ""TYBALT"": 1}",{}
+APOTHECARY,True,4,53,13.25,"{""MANTUA"": 1}","{""ROMEO"": 2}"
+FIRST CITIZEN,True,3,43,14.33,"{""MERCUTIO"": 1, ""TYBALT"": 1}",{}
 SECOND MUSICIAN,True,3,34,11.33,"{""JACK"": 1}",{}
 LADY MONTAGUE,True,2,28,14.0,"{""ROMEO"": 1}",{}
 THIRD WATCHMAN,True,1,26,26.0,{},{}
@@ -33,21 +33,12 @@ SECOND CAPULET,True,2,17,8.5,{},{}
 SECOND WATCHMAN,True,1,9,9.0,"{""ROMEO"": 1}",{}
 MUSICIAN,True,1,8,8.0,{},{}
 THIRD MUSICIAN,True,1,7,7.0,{},{}
-JOHN,False,0,0,0.0,{},"{""GREGORY"": 1, ""FRIAR LAURENCE"": 3}"
-MONTAGUES,False,0,0,0.0,{},"{""GREGORY"": 1, ""TYBALT"": 1, ""FIRST CITIZEN"": 1, ""SERVANT"": 1, ""FIRST WATCHMAN"": 1}"
-CAPULETS,False,0,0,0.0,{},"{""FIRST CITIZEN"": 1, ""FRIAR LAURENCE"": 1, ""FIRST WATCHMAN"": 1}"
-TUT,False,0,0,0.0,{},"{""ROMEO"": 1, ""BENVOLIO"": 1}"
 CUPID,False,0,0,0.0,{},"{""ROMEO"": 1, ""MERCUTIO"": 1}"
 ROSALINE,False,0,0,0.0,{},"{""ROMEO"": 3, ""BENVOLIO"": 1, ""MERCUTIO"": 2, ""FRIAR LAURENCE"": 4}"
 GOD,False,0,0,0.0,{},"{""NURSE"": 5, ""JULIET"": 3}"
-MARRY,False,0,0,0.0,{},"{""NURSE"": 4, ""SECOND SERVANT"": 1}"
-ANON,False,0,0,0.0,{},"{""NURSE"": 1, ""PETER"": 2, ""PAGE"": 1}"
 VENUS,False,0,0,0.0,{},"{""MERCUTIO"": 1, ""PARIS"": 1}"
 JESU,False,0,0,0.0,{},"{""MERCUTIO"": 1, ""NURSE"": 1}"
-LAURENCE,False,0,0,0.0,{},"{""ROMEO"": 1, ""NURSE"": 2, ""JULIET"": 3}"
-FIE,False,0,0,0.0,{},"{""NURSE"": 1, ""FRIAR LAURENCE"": 1, ""LADY CAPULET"": 2}"
 JACK,False,0,0,0.0,{},"{""MERCUTIO"": 1, ""SECOND MUSICIAN"": 1}"
-ALACK,False,0,0,0.0,{},"{""NURSE"": 1, ""FRIAR LAURENCE"": 1}"
-HIE,False,0,0,0.0,{},"{""NURSE"": 1, ""JULIET"": 1}"
-SIRRAH,False,0,0,0.0,{},"{""CAPULET"": 2, ""PRINCE"": 1}"
+LAURENCE,False,0,0,0.0,{},"{""NURSE"": 1, ""JULIET"": 3}"
 CAPEL,False,0,0,0.0,{},"{""BALTHASAR"": 1, ""FRIAR LAURENCE"": 1}"
+MANTUA,False,0,0,0.0,{},"{""APOTHECARY"": 1, ""FRIAR LAURENCE"": 1}"

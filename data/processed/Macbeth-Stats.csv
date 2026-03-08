@@ -1,52 +1,52 @@
 Name,Is_Speaker,Total_Turns,Total_Words,Avg_Words_Per_Turn,Mentions_Out_Dict,Mentions_In_Dict
-MACBETH,True,145,5345,36.86,"{""GLAMIS"": 3, ""CAWDOR"": 5, ""THANE"": 1, ""ROSS"": 2, ""ANGUS"": 1, ""BANQUO"": 13, ""THE PRINCE OF CUMBERLAND"": 1, ""DUNCAN"": 6, ""LADY MACBETH"": 1, ""FLEANCE"": 4, ""SIRRAH"": 1, ""HECATE"": 1, ""MACDUFF"": 4, ""FIFE"": 1, ""MALCOLM"": 3, ""SEYTON"": 4, ""SIWARD"": 1}","{""THIRD WITCH"": 4, ""SERGEANT"": 1, ""DUNCAN"": 3, ""FIRST WITCH"": 4, ""SECOND WITCH"": 1, ""ROSS"": 2, ""BANQUO"": 3, ""MACDUFF"": 3, ""THIRD MURDERER"": 1, ""LENNOX"": 3, ""HECATE"": 1, ""FIRST APPARITION"": 3, ""SECOND APPARITION"": 4, ""THIRD APPARITION"": 1, ""MALCOLM"": 2, ""SIWARD"": 1}"
-LADY MACBETH,True,59,1901,32.22,"{""THANE"": 1, ""HAIL"": 1, ""GLAMIS"": 2, ""CAWDOR"": 2, ""DUNCAN"": 4, ""DONALBAIN"": 1, ""BANQUO"": 2, ""FIFE"": 1}","{""MACBETH"": 1}"
-MALCOLM,True,40,1505,37.62,"{""ROSS"": 1, ""DONALBAIN"": 2, ""MACBETH"": 2, ""MACDUFF"": 3, ""SIWARD"": 1}","{""DUNCAN"": 1, ""MACDUFF"": 3, ""DONALBAIN"": 1, ""LENNOX"": 1, ""MENTEITH"": 1, ""MACBETH"": 3}"
-MACDUFF,True,59,1160,19.66,"{""BANQUO"": 4, ""DONALBAIN"": 2, ""MALCOLM"": 3, ""MACBETH"": 3, ""FIFE"": 1}","{""ROSS"": 1, ""MACBETH"": 4, ""LENNOX"": 3, ""LORD"": 1, ""FIRST APPARITION"": 1, ""MALCOLM"": 3, ""MENTEITH"": 1, ""SIWARD"": 1}"
-ROSS,True,39,905,23.21,"{""MACBETH"": 2, ""THANE"": 1, ""DUNCAN"": 2, ""MACDUFF"": 1}","{""MALCOLM"": 1, ""MACBETH"": 2, ""BANQUO"": 1}"
-BANQUO,True,33,785,23.79,"{""MACBETH"": 3, ""LENNOX"": 1, ""ROSS"": 1, ""CAWDOR"": 1, ""GLAMIS"": 1, ""FLEANCE"": 1}","{""DUNCAN"": 3, ""THIRD WITCH"": 1, ""FIRST WITCH"": 1, ""MACBETH"": 13, ""MACDUFF"": 4, ""LADY MACBETH"": 2, ""FIRST MURDERER"": 1, ""LENNOX"": 1}"
-LENNOX,True,21,511,24.33,"{""MACBETH"": 3, ""DUNCAN"": 2, ""BANQUO"": 1, ""FLEANCE"": 3, ""MALCOLM"": 1, ""DONALBAIN"": 1, ""MACDUFF"": 3, ""SIWARD"": 1}","{""BANQUO"": 1}"
-DUNCAN,True,18,472,26.22,"{""MACBETH"": 3, ""BANQUO"": 3, ""CAWDOR"": 4, ""MALCOLM"": 1, ""THE PRINCE OF CUMBERLAND"": 1}","{""LADY MACBETH"": 4, ""MACBETH"": 6, ""ROSS"": 2, ""LENNOX"": 2, ""LORD"": 1}"
-FIRST WITCH,True,23,358,15.57,"{""MACBETH"": 4, ""THANE"": 1, ""GLAMIS"": 1, ""HAIL"": 1, ""BANQUO"": 1, ""HECATE"": 1}",{}
-DOCTOR,True,20,327,16.35,{},{}
-PORTER,True,4,318,79.5,"{""ANON"": 2}",{}
-LADY MACDUFF,True,19,291,15.32,"{""SIRRAH"": 1, ""GOD"": 1}",{}
-HECATE,True,2,286,143.0,"{""MACBETH"": 1}","{""MACBETH"": 1, ""FIRST WITCH"": 1}"
-SERGEANT,True,3,234,78.0,"{""MACBETH"": 1}",{}
-SIWARD,True,11,204,18.55,"{""GOD"": 1, ""MACDUFF"": 1, ""MACBETH"": 1}","{""LORD"": 1, ""MALCOLM"": 1, ""MENTEITH"": 1, ""LENNOX"": 1, ""MACBETH"": 1}"
-GENTLEWOMAN,True,11,181,16.45,{},{}
-MESSENGER,True,6,176,29.33,{},{}
-FIRST MURDERER,True,19,172,9.05,"{""BANQUO"": 1, ""FLEANCE"": 1}",{}
-LORD,True,3,156,52.0,"{""DUNCAN"": 1, ""MACDUFF"": 1, ""SIWARD"": 1}",{}
-SON,True,14,143,10.21,{},{}
-ALL,True,13,141,10.85,{},{}
+MACBETH,True,145,5345,36.86,"{""THANE OF GLAMIS"": 1, ""CAWDOR"": 3, ""THANE OF CAWDOR"": 6, ""GLAMIS"": 2, ""ROSS"": 2, ""ANGUS"": 1, ""BANQUO"": 17, ""PRINCE OF CUMBERLAND"": 1, ""DUNCAN"": 7, ""SERVANT"": 2, ""HECATE"": 2, ""LADY MACBETH"": 1, ""FLEANCE"": 4, ""SON"": 2, ""ATTENDANT"": 1, ""MACDUFF"": 4, ""FIFE"": 1, ""MALCOLM"": 3, ""SOLDIERS"": 3, ""SEYTON"": 4, ""DOCTOR"": 3, ""SIWARD"": 1}","{""THIRD WITCH"": 4, ""SERGEANT"": 1, ""DUNCAN"": 3, ""FIRST WITCH"": 4, ""SECOND WITCH"": 1, ""ROSS"": 2, ""BANQUO"": 3, ""MACDUFF"": 3, ""THIRD MURDERER"": 1, ""LENNOX"": 3, ""HECATE"": 1, ""FIRST APPARITION"": 3, ""SECOND APPARITION"": 4, ""THIRD APPARITION"": 1, ""MALCOLM"": 5, ""SIWARD"": 1}"
+LADY MACBETH,True,59,1901,32.22,"{""THANE OF CAWDOR"": 1, ""GLAMIS"": 2, ""CAWDOR"": 2, ""DUNCAN"": 4, ""DONALBAIN"": 1, ""BANQUO"": 2, ""LORD"": 7, ""FIRST MURDERER"": 1, ""OLD MAN"": 1, ""THANE OF FIFE"": 1}","{""MACBETH"": 1, ""BANQUO"": 1}"
+MALCOLM,True,40,1505,37.62,"{""SERGEANT"": 1, ""DONALBAIN"": 2, ""MACBETH"": 5, ""MACDUFF"": 3, ""SIWARD"": 2, ""DOCTOR"": 1, ""SON"": 2}","{""DUNCAN"": 1, ""MACDUFF"": 3, ""DONALBAIN"": 1, ""LENNOX"": 1, ""MENTEITH"": 1, ""MACBETH"": 3}"
+MACDUFF,True,59,1160,19.66,"{""LORD"": 2, ""BANQUO"": 4, ""DONALBAIN"": 2, ""MALCOLM"": 3, ""MACBETH"": 3, ""FIFE"": 1, ""KING OF SCOTLAND"": 1}","{""LENNOX"": 4, ""ROSS"": 1, ""MACBETH"": 4, ""LORD"": 1, ""FIRST APPARITION"": 1, ""MALCOLM"": 3, ""MENTEITH"": 1, ""SIWARD"": 1}"
+ROSS,True,39,905,23.21,"{""THANE OF CAWDOR"": 2, ""MACBETH"": 2, ""DUNCAN"": 2, ""MACDUFF"": 1, ""LORD"": 2, ""SOLDIERS"": 1, ""SON"": 1}","{""MACBETH"": 2, ""BANQUO"": 1}"
+BANQUO,True,33,785,23.79,"{""THANE OF CAWDOR"": 1, ""MACBETH"": 3, ""LENNOX"": 1, ""ROSS"": 1, ""LADY MACBETH"": 1, ""CAWDOR"": 1, ""GLAMIS"": 1, ""LORD"": 4, ""FLEANCE"": 1}","{""DUNCAN"": 3, ""THIRD WITCH"": 1, ""FIRST WITCH"": 1, ""MACBETH"": 17, ""MACDUFF"": 4, ""LADY MACBETH"": 2, ""FIRST MURDERER"": 2, ""LENNOX"": 2, ""LORDS"": 1, ""ALL"": 1}"
+LENNOX,True,21,511,24.33,"{""MACDUFF"": 4, ""BANQUO"": 2, ""MACBETH"": 3, ""LORD"": 5, ""DUNCAN"": 2, ""FLEANCE"": 3, ""MALCOLM"": 1, ""DONALBAIN"": 1, ""SIWARD"": 1, ""SON"": 1}","{""BANQUO"": 1}"
+DUNCAN,True,18,472,26.22,"{""MACBETH"": 3, ""BANQUO"": 3, ""THANE OF CAWDOR"": 2, ""CAWDOR"": 2, ""MALCOLM"": 1, ""PRINCE OF CUMBERLAND"": 1}","{""LADY MACBETH"": 4, ""MACBETH"": 7, ""ROSS"": 2, ""LENNOX"": 2, ""LORD"": 1}"
+FIRST WITCH,True,23,358,15.57,"{""MACBETH"": 4, ""THANE OF GLAMIS"": 1, ""BANQUO"": 1, ""HECATE"": 2}",{}
+DOCTOR,True,20,327,16.35,"{""LORD"": 2}","{""MALCOLM"": 1, ""GENTLEWOMAN"": 1, ""MACBETH"": 3}"
+PORTER,True,4,318,79.5,{},{}
+LADY MACDUFF,True,19,291,15.32,"{""GOD"": 1}",{}
+HECATE,True,2,286,143.0,"{""MACBETH"": 1, ""SON"": 1}","{""MACBETH"": 2, ""FIRST WITCH"": 2}"
+SERGEANT,True,3,234,78.0,"{""MACBETH"": 1, ""KING OF SCOTLAND"": 1, ""LORD"": 1}","{""MALCOLM"": 1}"
+SIWARD,True,11,204,18.55,"{""LORD"": 1, ""GOD"": 1, ""MACDUFF"": 1, ""MACBETH"": 1}","{""LORD"": 1, ""MALCOLM"": 2, ""MENTEITH"": 1, ""LENNOX"": 1, ""MACBETH"": 1}"
+GENTLEWOMAN,True,11,181,16.45,"{""DOCTOR"": 1}",{}
+MESSENGER,True,6,176,29.33,"{""LORD"": 1}","{""LORD"": 1}"
+FIRST MURDERER,True,19,172,9.05,"{""BANQUO"": 2, ""LORD"": 2, ""FLEANCE"": 1}","{""LADY MACBETH"": 1}"
+LORD,True,3,156,52.0,"{""SON"": 1, ""DUNCAN"": 1, ""MACDUFF"": 1, ""SIWARD"": 1, ""MESSENGER"": 1}","{""SERGEANT"": 1, ""MACDUFF"": 2, ""BANQUO"": 4, ""ATTENDANT"": 1, ""BOTH MURDERERS"": 2, ""SECOND MURDERER"": 1, ""LADY MACBETH"": 7, ""FIRST MURDERER"": 2, ""LENNOX"": 5, ""LORDS"": 1, ""ROSS"": 2, ""SEYTON"": 3, ""DOCTOR"": 2, ""MESSENGER"": 1, ""SIWARD"": 1}"
+SON,True,14,143,10.21,{},"{""MACBETH"": 2, ""THIRD MURDERER"": 1, ""HECATE"": 1, ""LORD"": 1, ""LENNOX"": 1, ""MALCOLM"": 2, ""ROSS"": 1}"
+ALL,True,13,141,10.85,"{""BANQUO"": 1, ""KING OF SCOTLAND"": 1}",{}
 ANGUS,True,4,137,34.25,{},"{""MACBETH"": 1}"
-THIRD WITCH,True,13,129,9.92,"{""MACBETH"": 4, ""ANON"": 1, ""HAIL"": 1, ""BANQUO"": 1}",{}
-SECOND WITCH,True,15,125,8.33,"{""MACBETH"": 1, ""THANE"": 1, ""CAWDOR"": 1, ""HAIL"": 1}",{}
-SECOND MURDERER,True,6,86,14.33,{},{}
-OLD MAN,True,4,81,20.25,{},{}
+THIRD WITCH,True,13,129,9.92,"{""MACBETH"": 4, ""BANQUO"": 1}",{}
+SECOND WITCH,True,15,125,8.33,"{""MACBETH"": 1, ""THANE OF CAWDOR"": 1}",{}
+SECOND MURDERER,True,6,86,14.33,"{""LORD"": 1}",{}
+OLD MAN,True,4,81,20.25,{},"{""LADY MACBETH"": 1}"
 CAITHNESS,True,3,73,24.33,"{""DONALBAIN"": 1}",{}
 MENTEITH,True,5,71,14.2,"{""MALCOLM"": 1, ""SIWARD"": 1, ""MACDUFF"": 1}",{}
 DONALBAIN,True,3,59,19.67,"{""MALCOLM"": 1}","{""LADY MACBETH"": 1, ""MACDUFF"": 2, ""MALCOLM"": 2, ""LENNOX"": 1, ""CAITHNESS"": 1}"
 YOUNG SIWARD,True,4,50,12.5,{},{}
-THIRD MURDERER,True,6,42,7.0,"{""MACBETH"": 1}",{}
+THIRD MURDERER,True,6,42,7.0,"{""MACBETH"": 1, ""SON"": 1}",{}
 THIRD APPARITION,True,1,33,33.0,"{""MACBETH"": 1}",{}
-SEYTON,True,5,32,6.4,{},"{""MACBETH"": 4}"
+SEYTON,True,5,32,6.4,"{""LORD"": 3}","{""MACBETH"": 4}"
 SECOND APPARITION,True,2,24,12.0,"{""MACBETH"": 4}",{}
-SERVANT,True,5,21,4.2,{},{}
-LORDS,True,3,17,5.67,{},{}
+SERVANT,True,5,21,4.2,"{""SOLDIERS"": 1}","{""MACBETH"": 2}"
+LORDS,True,3,17,5.67,"{""LORD"": 1, ""BANQUO"": 1}",{}
 FLEANCE,True,2,15,7.5,{},"{""MACBETH"": 4, ""BANQUO"": 1, ""FIRST MURDERER"": 1, ""LENNOX"": 3}"
-FIRST APPARITION,True,1,14,14.0,"{""MACBETH"": 3, ""MACDUFF"": 1, ""FIFE"": 1}",{}
-ATTENDANT,True,1,8,8.0,{},{}
-BOTH MURDERERS,True,2,8,4.0,{},{}
-SOLDIERS,True,1,4,4.0,{},{}
+FIRST APPARITION,True,1,14,14.0,"{""MACBETH"": 3, ""MACDUFF"": 1, ""THANE OF FIFE"": 1}",{}
+ATTENDANT,True,1,8,8.0,"{""LORD"": 1}","{""MACBETH"": 1}"
+BOTH MURDERERS,True,2,8,4.0,"{""LORD"": 2}",{}
+SOLDIERS,True,1,4,4.0,{},"{""ROSS"": 1, ""SERVANT"": 1, ""MACBETH"": 3}"
 MACBETH LENNOX,True,1,3,3.0,{},{}
-ANON,False,0,0,0.0,{},"{""THIRD WITCH"": 1, ""PORTER"": 2}"
-CAWDOR,False,0,0,0.0,{},"{""DUNCAN"": 4, ""SECOND WITCH"": 1, ""MACBETH"": 5, ""LADY MACBETH"": 2, ""BANQUO"": 1}"
-THANE,False,0,0,0.0,{},"{""FIRST WITCH"": 1, ""SECOND WITCH"": 1, ""MACBETH"": 1, ""ROSS"": 1, ""LADY MACBETH"": 1}"
-GLAMIS,False,0,0,0.0,{},"{""FIRST WITCH"": 1, ""MACBETH"": 3, ""LADY MACBETH"": 2, ""BANQUO"": 1}"
-HAIL,False,0,0,0.0,{},"{""FIRST WITCH"": 1, ""SECOND WITCH"": 1, ""THIRD WITCH"": 1, ""LADY MACBETH"": 1}"
-THE PRINCE OF CUMBERLAND,False,0,0,0.0,{},"{""DUNCAN"": 1, ""MACBETH"": 1}"
-FIFE,False,0,0,0.0,{},"{""MACDUFF"": 1, ""FIRST APPARITION"": 1, ""MACBETH"": 1, ""LADY MACBETH"": 1}"
-SIRRAH,False,0,0,0.0,{},"{""MACBETH"": 1, ""LADY MACDUFF"": 1}"
+KING OF SCOTLAND,False,0,0,0.0,{},"{""SERGEANT"": 1, ""MACDUFF"": 1, ""ALL"": 1}"
+THANE OF CAWDOR,False,0,0,0.0,{},"{""ROSS"": 2, ""DUNCAN"": 2, ""SECOND WITCH"": 1, ""MACBETH"": 6, ""BANQUO"": 1, ""LADY MACBETH"": 1}"
+THANE OF GLAMIS,False,0,0,0.0,{},"{""FIRST WITCH"": 1, ""MACBETH"": 1}"
+CAWDOR,False,0,0,0.0,{},"{""MACBETH"": 3, ""DUNCAN"": 2, ""LADY MACBETH"": 2, ""BANQUO"": 1}"
+GLAMIS,False,0,0,0.0,{},"{""MACBETH"": 2, ""LADY MACBETH"": 2, ""BANQUO"": 1}"
+PRINCE OF CUMBERLAND,False,0,0,0.0,{},"{""DUNCAN"": 1, ""MACBETH"": 1}"
+FIFE,False,0,0,0.0,{},"{""MACDUFF"": 1, ""MACBETH"": 1}"
+THANE OF FIFE,False,0,0,0.0,{},"{""FIRST APPARITION"": 1, ""LADY MACBETH"": 1}"
 GOD,False,0,0,0.0,{},"{""LADY MACDUFF"": 1, ""SIWARD"": 1}"
