@@ -9,11 +9,13 @@ venv/
 .venv/
 conda_env/
 
-# Data artifacts (Ignore heavy raw/parsed files, keep stats & reports)
-data/raw/*
-!data/raw/.gitkeep
+# Data Artifacts - Ignore heavy raw texts and parsed JSON schemas
+data/*/*-raw.txt
+data/*/*-Parsed.json
 
-data/processed/*.json
+# Data Artifacts - Ignore raw subtitle files
+data/*/srt/*.srt
+!data/*/srt/.gitkeep
 
 # IDEs and OS files
 .vscode/

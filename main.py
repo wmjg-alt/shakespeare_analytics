@@ -1,87 +1,63 @@
 """
 main.py
-Orchestrator script to run the Shakespeare parsing, NLP, and analytics pipeline.
+CLI Orchestrator for the Shakespeare Analytics & SRT Extraction Pipeline.
+Run `python main.py -h` for full usage instructions.
 """
-import json
-import logging
-import os
 import argparse
-
-from src.models import Play
-from src.parser import PlayParser
-from src.analyzer import PlayAnalyzer
+import logging
+from src.pipelines import run_parse, run_extract
+from src.srt_utils import shift_srt_timestamps
+import os
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
-logger = logging.getLogger(__name__)
-
-def ensure_dirs(filepath: str):
-    """Utility to ensure destination directories exist before writing."""
-    directory = os.path.dirname(filepath)
-    if directory and not os.path.exists(directory):
-        os.makedirs(directory)
 
 def main():
-    parser = argparse.ArgumentParser(description="Shakespeare Parser & Analytics Engine")
-    parser.add_argument("-p", "--play", type=str, default="Romeo_and_Juliet",
-                        help="Name of the play to process (e.g., Romeo_and_Juliet, Macbeth).")
-    parser.add_argument("-r", "--rebuild", action="store_true", 
-                        help="Force rebuild both the JSON parse and the NLP CSV from raw text.")
-    parser.add_argument("-t", "--top", type=int, default=5,
-                        help="Number of characters to display in the top N rankings (default: 5)")
-    parser.add_argument("-g", "--gimmicks", nargs="*", default=["ALL", "CHORUS"],
-                        help="Collective/Gimmick roles that shouldn't receive incoming mentions (e.g. ALL CHORUS)")
+    parser = argparse.ArgumentParser(
+        description="Shakespeare Analytics Data Engine. Parses raw text, runs NLP, and extracts film SRT timestamps."
+    )
+    subparsers = parser.add_subparsers(dest="command", required=True, help="Available sub-commands")
+
+    # Command 1: parse
+    parse_cmd = subparsers.add_parser("parse", help="Parse a raw play script and generate NLP stats/reports.")
+    parse_cmd.add_argument("-p", "--play", required=True, help="Play ID (e.g. Romeo_and_Juliet)")
+    parse_cmd.add_argument("-r", "--rebuild", action="store_true", help="Force rebuild JSON and NLP CSV from scratch")
+    parse_cmd.add_argument("-t", "--top", type=int, default=5, help="Number of Top N characters to print in report")
+    parse_cmd.add_argument("-g", "--gimmicks", nargs="*", default=["ALL", "CHORUS"], help="Roles ignored by incoming mentions")
+
+    # Command 2: extract
+    extract_cmd = subparsers.add_parser("extract", help="Extract scene Start/End timestamps from all available film SRTs.")
+    extract_cmd.add_argument("-p", "--play", required=True, help="Play ID to extract timestamps for")
+
+    # Command 3: all
+    all_cmd = subparsers.add_parser("all", help="Run 'parse' and then 'extract' consecutively.")
+    all_cmd.add_argument("-p", "--play", required=True, help="Play ID to run the full pipeline on")
+    all_cmd.add_argument("-r", "--rebuild", action="store_true", help="Force rebuild JSON and CSV during parse")
+    all_cmd.add_argument("-t", "--top", type=int, default=5, help="Top N characters")
+    all_cmd.add_argument("-g", "--gimmicks", nargs="*", default=["ALL", "CHORUS"])
+
+    # Command 4: util
+    util_cmd = subparsers.add_parser("util", help="Utility tools for fixing and shifting SRT files.")
+    util_cmd.add_argument("-p", "--play", required=True, help="Play ID (e.g. Romeo_and_Juliet)")
+    util_cmd.add_argument("--shift", nargs=2, metavar=("YEAR", "SECONDS"), help="Shift subtitle timestamps (e.g., 1968 -2.8)")
+
     args = parser.parse_args()
 
-    # Dynamic Path Formatting
-    play_id       = args.play
-    play_title    = play_id.replace("_", " ") 
-    
-    raw_filepath  = os.path.join("data", "raw", f"{play_id}-Shakespeare-raw.txt")
-    json_outpath  = os.path.join("data", "processed", f"{play_id}-Parsed.json")
-    csv_outpath   = os.path.join("data", "processed", f"{play_id}-Stats.csv")
-    report_outpath= os.path.join("data", "reports", f"{play_id}-Report.txt")
-
-    needs_parse = args.rebuild or not os.path.exists(json_outpath)
-    if needs_parse and not os.path.exists(raw_filepath):
-        logger.error(f"Missing Raw File: Expected to find '{raw_filepath}'.")
-        return
-
-    for path in[json_outpath, csv_outpath, report_outpath]:
-        ensure_dirs(path)
-
-    parsed_play = None
-
-    # ==========================================
-    # PHASE 1: TEXT PARSING
-    # ==========================================
-    if not needs_parse:
-        logger.info(f"Found existing {json_outpath}. Loading structural schema...")
-        with open(json_outpath, 'r', encoding='utf-8') as f:
-            parsed_play = Play.from_dict(json.load(f))
-    else:
-        p_parser = PlayParser(title=play_title)
-        parsed_play = p_parser.parse_file(raw_filepath)
+    # Route to the appropriate pipeline
+    if args.command == "parse":
+        run_parse(args.play, args.rebuild, args.top, args.gimmicks)
         
-        with open(json_outpath, 'w', encoding='utf-8') as f:
-            json.dump(parsed_play.to_dict(), f, indent=4)
-        logger.info(f"Successfully saved schema to {json_outpath}")
-
-    # ==========================================
-    # PHASE 2: NLP ANALYTICS & REPORTING
-    # ==========================================
-    # Pass the gimmicks into the analyzer
-    analyzer = PlayAnalyzer(parsed_play, gimmick_chars=args.gimmicks)
-
-    if os.path.exists(csv_outpath) and not args.rebuild:
-        # Load entirely from CSV - bypasses NLP / SpaCy!
-        analyzer.load_from_csv(csv_outpath)
-    else:
-        # Run heavy SpaCy extraction
-        analyzer.analyze()         
-        analyzer.export_csv(csv_outpath)
-    
-    # Generate parameterized report
-    analyzer.generate_report(report_filepath=report_outpath, play_title=play_title, top_n=args.top) 
+    elif args.command == "extract":
+        run_extract(args.play)
+        
+    elif args.command == "all":
+        logging.info(f"=== Running Full Pipeline for {args.play} ===")
+        run_parse(args.play, args.rebuild, args.top, args.gimmicks)
+        run_extract(args.play)
+        
+    elif args.command == "util":
+        srt_dir = os.path.join("data", args.play, "srt")
+        if args.shift:
+            shift_srt_timestamps(srt_dir, args.play, args.shift[0], float(args.shift[1]))
 
 if __name__ == "__main__":
     main()
