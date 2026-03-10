@@ -110,7 +110,7 @@
 
         // Main Data Loader
         function loadPlayData(playName) {
-            const csvPath = `data/processed/${playName}-Stats.csv`;
+            const csvPath = `data/${playName}/${playName}-Stats.csv`;
             
             Papa.parse(csvPath, {
                 download: true,
